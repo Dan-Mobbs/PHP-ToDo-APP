@@ -1,26 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php 
+    
+    // require_once '../../backend/db-conn/db.php';
 
-<head>
+    // session_start();
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    include_once "../../header/header.php";    
 
-    <title>SB Admin 2 - Login</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-</head>
+?>
 
 <body class="bg-gradient-primary">
 
@@ -41,11 +27,11 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form action="login.php" method="POST" class="user">
+                                    <form action="../../inc/login.inc.php" method="post" class="user">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input type="email" name="uid" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                                placeholder="Enter Email Address or Username">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
@@ -58,23 +44,34 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="index.php" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+                                        <button type="submit" name="submit" class="mb-3 btn btn-primary btn-user btn-block">
+                                        Login
+                                        </button>
                                         <hr>
-                                        <a href="index.php" class="btn btn-google btn-user btn-block">
+                                        <a href="login.php" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
                                         </a>
-                                        <a href="index.php" class="btn btn-facebook btn-user btn-block">
+                                        <a href="login.php" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a>
                                     </form>
+                                    <?php 
+                                    if( isset( $_GET[ "error" ] ) ) {
+                                    
+                                        if( $_GET[ "error" ] == "emptyinput" ) {
+                                            echo "<p class='text-center small text-danger'>Fill in all field</p>";
+                                        }
+                                        else if( $_GET[ "error" ] == "wronglogin" ) {
+                                            echo "<p class='text-center small text-danger'>Please fill out all fields</p>";
+                                        }                                       
+                                    }
+                                ?>  
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.php">Forgot Password?</a>
+                                        <a class="small" href="page-templates/login/forgot-password.php">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="register.php">Create an Account!</a>
+                                        <a class="small" href="page-templates/login/register.php">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>
@@ -88,16 +85,8 @@
 
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<?php
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+include_once "../../footer/footer.php";
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-</body>
-
-</html>
+?>
