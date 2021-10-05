@@ -39,12 +39,12 @@
                                             Reset Password
                                         </a>
                                     </form>
-                                    <hr>
+                                    <hr>                                    
                                     <div class="text-center">
-                                        <a class="small" href="page-templates/login/register.php">Create an Account!</a>
+                                        <a class="small" href="login.php">Already have an account? Login!</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="index.php">Already have an account? Login!</a>
+                                        <a class="small" href="register.php">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>

@@ -29,12 +29,12 @@
                                     </div>
                                     <form action="../../inc/login.inc.php" method="post" class="user">
                                         <div class="form-group">
-                                            <input type="email" name="uid" class="form-control form-control-user"
+                                            <input type="text" name="uid" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address or Username">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
+                                            <input type="password" name="pwd" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password">
                                         </div>
                                         <div class="form-group">
@@ -47,6 +47,20 @@
                                         <button type="submit" name="submit" class="mb-3 btn btn-primary btn-user btn-block">
                                         Login
                                         </button>
+                                        <?php 
+                                        if( isset( $_GET[ "error" ] ) ) {
+                                        
+                                            if( $_GET[ "error" ] == "emptyinput" ) {
+                                                echo "<p class='text-center text-danger'>Fill in all field</p>";
+                                            }
+                                            else if( $_GET[ "error" ] == "wronglogin" ) {
+                                                echo "<p class='text-center text-danger'>Wrong password or email</p>";
+                                            }
+                                            else if( $_GET[ "error" ] == "none" ) {
+                                                echo "<p class='text-center text-success'>User signup success</p>";
+                                            }                                       
+                                        }
+                                        ?>  
                                         <hr>
                                         <a href="login.php" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
@@ -54,24 +68,13 @@
                                         <a href="login.php" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a>
-                                    </form>
-                                    <?php 
-                                    if( isset( $_GET[ "error" ] ) ) {
-                                    
-                                        if( $_GET[ "error" ] == "emptyinput" ) {
-                                            echo "<p class='text-center small text-danger'>Fill in all field</p>";
-                                        }
-                                        else if( $_GET[ "error" ] == "wronglogin" ) {
-                                            echo "<p class='text-center small text-danger'>Please fill out all fields</p>";
-                                        }                                       
-                                    }
-                                ?>  
+                                    </form>                                    
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="page-templates/login/forgot-password.php">Forgot Password?</a>
+                                        <a class="small" href="forgot-password.php">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="page-templates/login/register.php">Create an Account!</a>
+                                        <a class="small" href="register.php">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>

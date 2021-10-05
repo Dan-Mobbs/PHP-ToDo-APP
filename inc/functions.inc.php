@@ -2,15 +2,6 @@
 
 require 'lib/password.php';
 
-function console_log($output, $with_script_tags = true) {
-    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
-');';
-    if ($with_script_tags) {
-        $js_code = '<script>' . $js_code . '</script>';
-    }
-    echo $js_code;
-}
-
 // Checks for empty input fields
 function emptyInputRegister( $uid, $name, $email, $pwd, $pwdRepeat ) {
 
@@ -64,9 +55,9 @@ function pwdMatch( $pwd, $pwdRepeat ) {
 }
 
 // Checks if username and email exists and login form
-function uIdExists( $conn, $uid, $email ) {
+function uIdExists( $conn, $email, $uid ) {
 
-    $sql = "SELECT * FROM users WHERE username = ? OR email = ?;";
+    $sql = "SELECT * FROM users WHERE email = ? OR username = ?;";
     $stmt = mysqli_stmt_init( $conn );
     if ( !mysqli_stmt_prepare( $stmt, $sql ) ) {
 
@@ -75,7 +66,7 @@ function uIdExists( $conn, $uid, $email ) {
 
     }
 
-    mysqli_stmt_bind_param( $stmt, "ss", $uid, $email );
+    mysqli_stmt_bind_param( $stmt, "ss", $email, $uid );
     mysqli_stmt_execute( $stmt );
     
     $resultsData = mysqli_stmt_get_result( $stmt );
@@ -96,7 +87,7 @@ function uIdExists( $conn, $uid, $email ) {
 }
 
 // Create the user in the database
-function createUser( $conn, $name, $email, $uid, $pwd ) {
+function createUser( $conn, $name, $pwd, $email, $uid ) {
 
     $sql = "INSERT INTO users ( name, password, email, username ) VALUES ( ?, ?, ?, ? );";
     $stmt = mysqli_stmt_init( $conn );
@@ -109,11 +100,11 @@ function createUser( $conn, $name, $email, $uid, $pwd ) {
 
     $hashedPwd = password_hash( $pwd, PASSWORD_DEFAULT );
 
-    mysqli_stmt_bind_param( $stmt, "ssss", $name, $email, $uid, $hashedPwd );
+    mysqli_stmt_bind_param( $stmt, "ssss", $name, $hashedPwd, $email, $uid );
     mysqli_stmt_execute( $stmt );    
     mysqli_stmt_close( $stmt );
 
-    header( "location: ../page-templates/login/register.php?error=none" );
+    header( "location: ../page-templates/login/login.php?error=none" );
     exit();
     
 }
@@ -134,10 +125,10 @@ function emptyInpuLogin( $uid, $pwd ) {
 // ON LOGIN!! Checks for empty input fields 
 function loginUser( $conn, $uid, $pwd ) {
 
-    $uidExists = uIdExists( $conn, $uid, $uid ) {
+    $uidExists = uIdExists( $conn, $uid, $uid );
 
         if ( $uidExists === false ) {
-            header( "location: ../page-templates/login/register.php?error=wronglogin" ); 
+            header( "location: ../page-templates/login/login.php?error=wronglogin" ); 
             exit();
         }
 
@@ -145,15 +136,15 @@ function loginUser( $conn, $uid, $pwd ) {
         $checkPwd = password_verify( $pwd, $pwdHashed );    
 
         if ( $checkPwd === false ) {
-            header( "location: ../page-templates/login/register.php?error=wronglogin" ); 
+            header( "location: ../page-templates/login/login.php?error=wronglogin" ); 
             exit();
         }
-        elseif ( $checkPwd === false ) {
+        elseif ( $checkPwd === true ) {
             session_start();
-            $_SESSION[ "id" ] = $uidExists[ "id" ];
-            $_SESSION[ "username" ] = $uidExists[ "username" ];
-            header( "location: ../idex.php" );
+            $_SESSION[ "userId" ] = $uidExists[ "id" ];
+            $_SESSION[ "userName" ] = $uidExists[ "username" ];
+            header( "location: ../index.php" );
             exit();
         }
-    }
+    
 }

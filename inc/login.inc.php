@@ -1,12 +1,12 @@
 <?php 
 
-if ( isset( $_POST["sumbit"]) ) {
+if ( isset( $_POST["submit"]) ) {
 
-    $username = $_POST["uid"];
+    $uid = $_POST["uid"];
     $pwd = $_POST["pwd"];
 
     require_once 'dbh.inc.php';
-    require_once 'functions.php';
+    require_once 'functions.inc.php';
 
     if ( emptyInpuLogin( $uid, $pwd ) !== false ) {
 

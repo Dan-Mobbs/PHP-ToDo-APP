@@ -220,15 +220,15 @@ session_start();
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
                                 </a>
-                                <div class="dropdown-divider"></div>
-                                <?php 
-                                    if ( isset($_SESSION["username"]) ) {
-
-                                    }
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
+                                <div class="dropdown-divider"></div>                              
+                                    <div class="dropdown-item">    
+                                        <?php 
+                                            if ( isset($_SESSION["uid"]) ) {
+                                                echo "<a href='inc/logout.inc.php' class='fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400'>Log Out</a>";      
+                                            }                                         
+                                        ?>      
+                                    </div>
+                                </div>    
                             </div>
                         </li>
 
@@ -242,9 +242,11 @@ session_start();
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        <?php 
+                            if ( isset($_SESSION["uid"]) ) {
+                                echo "<h2>Welcome " . $_SESSION["uid"] . " to your to do list</h2>";                                           
+                            }    
+                        ?>                     
                     </div>
 
                     <!-- Content Row -->
@@ -316,26 +318,7 @@ session_start();
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>       
+    
 <?php
 
 include_once "footer/footer_app.php";

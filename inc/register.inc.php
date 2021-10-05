@@ -53,7 +53,7 @@ if ( isset($_POST["submit"]) ) {
      * 
     */
 
-    createUser( $conn, $name, $email, $uid, $pwd );   
+    createUser( $conn, $name, $pwd, $email, $uid );   
 
 }
 else {

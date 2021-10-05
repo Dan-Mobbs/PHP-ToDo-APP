@@ -28,7 +28,7 @@
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">                                    
                                         <input name="name" type="text" class="form-control form-control-user" id="Name"
-                                            placeholder="First Name">                                        
+                                            placeholder="Your Name">                                        
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -52,22 +52,22 @@
                                     if( isset( $_GET[ "error" ] ) ) {
                                     
                                         if( $_GET[ "error" ] == "emptyinput" ) {
-                                            echo "<p class='text-center small text-danger'>Fill in all field</p>";
+                                            echo "<p class='text-center text-danger'>Fill in all field</p>";
                                         }
                                         else if( $_GET[ "error" ] == "invaliduid" ) {
-                                            echo "<p class='text-center small text-danger'>Invalid Username</p>";
+                                            echo "<p class='text-center text-danger'>Invalid Username</p>";
                                         }
                                         else if( $_GET[ "error" ] == "invalidemail" ) {
-                                            echo "<p class='text-center small text-danger'>Invalid Email</p>";
+                                            echo "<p class='text-center text-danger'>Invalid Email</p>";
                                         }
                                         else if( $_GET[ "error" ] == "pwddontmatch" ) {
-                                            echo "<p class='text-center small text-danger'>Passwords dont match</p>";
+                                            echo "<p class='text-center text-danger'>Passwords dont match</p>";
                                         }
                                         else if( $_GET[ "error" ] == "uNameTaken" ) {
-                                            echo "<p class='text-center small text-danger'>Username is taken</p>";
+                                            echo "<p class='text-center text-danger'>Username is taken</p>";
                                         }
                                         else if( $_GET[ "error" ] == "stmtfailded" ) {
-                                            echo "<p class='text-center small text-danger'>Something went one, please try again</p>";
+                                            echo "<p class='text-center text-danger'>Something went one, please try again</p>";
                                         }
                                         else if( $_GET[ "error" ] == "none" ) {
                                             echo "<p class='text-center text-success'>User signup success</p>";
@@ -75,21 +75,20 @@
                                     }
                                 ?>                                
                                 <hr>
-                                <!-- <a href="index.php" class="btn btn-google btn-user btn-block">
+                                <a href="index.php" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
                                 </a>
                                 <a href="index.php" class="btn btn-facebook btn-user btn-block">
                                     <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                </a> -->
+                                </a>
                             </form>
                             <hr>
-                            <!-- <div class="text-center">
-                                <a class="small" href="page-templates/login/forgot-password.php">Forgot Password?</a>
+                            <div class="text-center">
+                                <a class="small" href="forgot-password.php">Forgot Password?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="index.php">Already have an account? Login!</a>
-                            </div> -->
-                           
+                                <a class="small" href="login.php">Already have an account? Login!</a>
+                            </div>                          
                         </div>
                     </div>
                 </div>
